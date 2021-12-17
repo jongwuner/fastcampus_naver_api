@@ -103,15 +103,15 @@ def saveInExcel(filteredItemList):
   df.to_excel(file_path+'output.xlsx', sheet_name='sample1')
 
 query = '모니터'
-print(f">>> 입력한 검색어 : {query}")
+# print(f">>> 입력한 검색어 : {query}")
 
-print('\n\nNAVER 정보를 불러오는 중 입니다...')
+# print('\n\nNAVER 정보를 불러오는 중 입니다...')
 itemList = getItemListByNaver(query)
-print(f'>>> {len(itemList)}개 의 검색 결과를 불러왔습니다')
+# print(f'>>> {len(itemList)}개 의 검색 결과를 불러왔습니다')
  
 print('\n\nITEM 필터링을 시작합니다...')
 filteredItemList = getFilteredItemList(itemList)
-print(f'>>> {len(filteredItemList)}개 의 필터링 된 데이터가 준비되었습니다')
+# print(f'>>> {len(filteredItemList)}개 의 필터링 된 데이터가 준비되었습니다')
 
 print('\n\nExcel에 저장합니다...')
 saveInExcel(filteredItemList)
