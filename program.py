@@ -26,9 +26,8 @@ column_name_list = [
 
 
 # NAVER API 고정 정보
-X_NAVER_CLIENT_ID = os.environ.get('X_NAVER_CLIENT_ID')
-X_NAVER_CLIENT_SECRET = os.environ.get('X_NAVER_CLIENT_SECRET')
-
+X_NAVER_CLIENT_ID = '2y5X2WYXZiX10qbaSEUx'
+X_NAVER_CLIENT_SECRET = 'T5ecs75fDD'
 
 
 URL = 'https://openapi.naver.com/v1/search/shop.json' 
