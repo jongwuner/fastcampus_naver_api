@@ -96,7 +96,7 @@ def getFilteredItemList(itemList):
     'category4': item['category4'],
     }
     resItemList.append(curFilteredItem.values())
-    print(f">>> [{idx}/{itemLen}] 필터링 성공 ")
+    # print(f">>> [{idx}/{itemLen}] 필터링 성공 ")
 
   return resItemList
     
@@ -113,9 +113,9 @@ query = '모니터'
 itemList = getItemListByNaver(query)
 # print(f'>>> {len(itemList)}개 의 검색 결과를 불러왔습니다')
  
-print('\n\nITEM 필터링을 시작합니다...')
+# print('\n\nITEM 필터링을 시작합니다...')
 filteredItemList = getFilteredItemList(itemList)
 # print(f'>>> {len(filteredItemList)}개 의 필터링 된 데이터가 준비되었습니다')
 
-print('\n\nExcel에 저장합니다...')
+# print('\n\nExcel에 저장합니다...')
 saveInExcel(filteredItemList)
