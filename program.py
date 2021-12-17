@@ -37,8 +37,8 @@ headers = {
   'X-Naver-Client-Secret' : X_NAVER_CLIENT_SECRET 
 }
 
-print(headers['X_NAVER_CLIENT_ID'])
-print(headers['X_NAVER_CLIENT_SECRET'])
+print(headers['X-Naver-Client-Id'])
+print(headers['X-Naver-Client-Secret'])
 
 
 # NAVER API 호출 함수
