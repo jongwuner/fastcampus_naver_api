@@ -102,7 +102,7 @@ def saveInExcel(filteredItemList):
   df = pandas.DataFrame(filteredItemList, columns=column_name_list)
   df.to_excel(file_path+'output.xlsx', sheet_name='sample1')
 
-query = input('검색어를 입력하세요 : ')
+query = '모니터'
 print(f">>> 입력한 검색어 : {query}")
 
 print('\n\nNAVER 정보를 불러오는 중 입니다...')
