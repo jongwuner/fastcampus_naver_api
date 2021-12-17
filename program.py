@@ -29,6 +29,9 @@ column_name_list = [
 X_NAVER_CLIENT_ID = os.environ.get('X_NAVER_CLIENT_ID')
 X_NAVER_CLIENT_SECRET = os.environ.get('X_NAVER_CLIENT_SECRET')
 
+print("X_NAVER_CLIENT_ID" + X_NAVER_CLIENT_ID)
+print("X_NAVER_CLIENT_SECRET" + X_NAVER_CLIENT_SECRET)
+
 
 URL = 'https://openapi.naver.com/v1/search/shop.json' 
 headers = {
