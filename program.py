@@ -98,8 +98,8 @@ def getFilteredItemList(itemList):
     
 def saveInExcel(filteredItemList, keyword):
   date = getDate()
-  dir_item = '/output/아이템 별/'+keyword
-  dir_date = '/output/일자 별/'+date
+  dir_item = '/output/item/'+keyword
+  dir_date = '/output/date/'+date
   file_name = '/'+date+'_'+keyword+'.xlsx'
 
   createFolder(dir_item)
