@@ -107,8 +107,8 @@ def saveInExcel(filteredItemList, keyword):
   createFolder(dir_date)
 
   df = pandas.DataFrame(filteredItemList, columns=column_name_list)
-  df.to_excel(dir_item + file_name, sheet_name='sample1')
-  df.to_excel(dir_date + file_name, sheet_name='sample1')
+  # df.to_excel(dir_item + file_name, sheet_name='sample1')
+  # df.to_excel(dir_date + file_name, sheet_name='sample1')
 
 
 # NAVER API 고정 정보
