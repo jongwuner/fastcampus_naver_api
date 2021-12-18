@@ -25,7 +25,7 @@ column_name_list = [
 # 오늘 날짜 받아오기
 def getDate():
     now = datetime.now()
-    nowTime = now.strftime('%Y-%m-%d')
+    nowTime = now.strftime('%Y-%m-%d').encode('utf-8')
     return nowTime
 
 def createFolder(directory):
@@ -100,7 +100,7 @@ def saveInExcel(filteredItemList, keyword):
   date = getDate()
   dir_item = b'/output/item/'+keyword
   dir_date = b'/output/date/'+date
-  file_name = b'/'+date+'_'+keyword+'.xlsx'
+  file_name = b'/'+date+b'_'+keyword+b'.xlsx'
 
   createFolder(dir_item)
   createFolder(dir_date)
