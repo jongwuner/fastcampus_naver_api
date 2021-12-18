@@ -19,6 +19,9 @@ jobs:
         pip install -r requirements.txt
         python program.py
         dir
+      env: 
+        X_NAVER_CLIENT_ID: ${{ secrets.X_NAVER_CLIENT_ID }}
+        X_NAVER_CLIENT_SECRET: ${{ secrets.X_NAVER_CLIENT_SECRET }}
 
     - name: Commit files
       id: commit
