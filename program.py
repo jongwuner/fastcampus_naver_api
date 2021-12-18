@@ -28,16 +28,19 @@ column_name_list = [
 # NAVER API 고정 정보
 X_NAVER_CLIENT_ID = os.environ.get('X_NAVER_CLIENT_ID')
 X_NAVER_CLIENT_SECRET = os.environ.get('X_NAVER_CLIENT_SECRET')
+keyword1 = os.environ.get('keyword1')
+keyword2 = os.environ.get('keyword2')
+keyword3 = os.environ.get('keyword3')
 
+print(keyword1)
+print(keyword2)
+print(keyword3)
 
 URL = 'https://openapi.naver.com/v1/search/shop.json' 
 headers = {
   'X-Naver-Client-Id': X_NAVER_CLIENT_ID,
   'X-Naver-Client-Secret' : X_NAVER_CLIENT_SECRET 
 }
-
-print(headers['X-Naver-Client-Id'])
-print(headers['X-Naver-Client-Secret'])
 
 
 # NAVER API 호출 함수
@@ -100,22 +103,12 @@ def getFilteredItemList(itemList):
 
   return resItemList
     
-
-# EXCEL 저장 함수
 def saveInExcel(filteredItemList):
   df = pandas.DataFrame(filteredItemList, columns=column_name_list)
   df.to_excel(file_path+'output.xlsx', sheet_name='sample1')
 
 query = '모니터'
-# print(f">>> 입력한 검색어 : {query}")
-
-# print('\n\nNAVER 정보를 불러오는 중 입니다...')
 itemList = getItemListByNaver(query)
-# print(f'>>> {len(itemList)}개 의 검색 결과를 불러왔습니다')
- 
-# print('\n\nITEM 필터링을 시작합니다...')
 filteredItemList = getFilteredItemList(itemList)
-# print(f'>>> {len(filteredItemList)}개 의 필터링 된 데이터가 준비되었습니다')
 
-# print('\n\nExcel에 저장합니다...')
 saveInExcel(filteredItemList)
