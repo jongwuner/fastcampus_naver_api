@@ -99,14 +99,15 @@ def getFilteredItemList(itemList):
     
 def saveInExcel(filteredItemList, keyword):
   date = getDate()
-  dir_item = '/output/item/'+keyword
-  dir_date = '/output/date/'+date
+  dir_item = './output/item/'+keyword
+  dir_date = './output/date/'+date
   file_name = '/'+date+'_'+keyword+'.xlsx'
 
   createFolder(dir_item)
   createFolder(dir_date)
 
   df = pandas.DataFrame(filteredItemList, columns=column_name_list)
+  df.to_excel("output.xlsx", sheet_name='sample1')
   df.to_excel(dir_item + file_name, sheet_name='sample1')
   df.to_excel(dir_date + file_name, sheet_name='sample1')
 
