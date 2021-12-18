@@ -32,9 +32,10 @@ def createFolder(directory):
     try:
         if not os.path.exists(directory):
             os.makedirs(directory)
-            print("디렉토리가 생성되었습니다. " + directory)
+            # print("디렉토리가 생성되었습니다. " + directory)
     except OSError:
-        print ('[에러]: 디렉토리 생성에 에러가 발생했습니다. ' +  directory)
+      pass
+        # print ('[에러]: 디렉토리 생성에 에러가 발생했습니다. ' +  directory)
 
 
 # NAVER API 호출 함수
