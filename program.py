@@ -25,7 +25,7 @@ column_name_list = [
 # 오늘 날짜 받아오기
 def getDate():
     now = datetime.now()
-    nowTime = now.strftime('%Y-%m-%d').encode('utf-8')
+    nowTime = now.strftime('%Y-%m-%d')
     return nowTime
 
 def createFolder(directory):
@@ -99,16 +99,16 @@ def getFilteredItemList(itemList):
     
 def saveInExcel(filteredItemList, keyword):
   date = getDate()
-  dir_item = b'/output/item/'+keyword
-  dir_date = b'/output/date/'+date
-  file_name = b'/'+date+b'_'+keyword+b'.xlsx'
+  dir_item = '/output/item/'+keyword
+  dir_date = '/output/date/'+date
+  file_name = '/'+date+'_'+keyword+'.xlsx'
 
   createFolder(dir_item)
   createFolder(dir_date)
 
   df = pandas.DataFrame(filteredItemList, columns=column_name_list)
-  # df.to_excel(dir_item + file_name, sheet_name='sample1')
-  # df.to_excel(dir_date + file_name, sheet_name='sample1')
+  df.to_excel(dir_item + file_name, sheet_name='sample1')
+  df.to_excel(dir_date + file_name, sheet_name='sample1')
 
 
 # NAVER API 고정 정보
@@ -117,7 +117,7 @@ X_NAVER_CLIENT_SECRET = os.environ.get('X_NAVER_CLIENT_SECRET')
 keyword = []
 
 for i in range(0, 10):
-  tmp_keyword = os.environ.get('keyword'+str(i)).encode("utf-8")
+  tmp_keyword = os.environ.get('keyword'+str(i))
   keyword.append(tmp_keyword)
 
 URL = 'https://openapi.naver.com/v1/search/shop.json' 
