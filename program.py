@@ -32,9 +32,9 @@ keyword1 = os.environ.get('keyword1')
 keyword2 = os.environ.get('keyword2')
 keyword3 = os.environ.get('keyword3')
 
-print(keyword1)
-print(keyword2)
-print(keyword3)
+print(keyword1.encode("utf-8"))
+print(keyword2.encode("utf-8"))
+print(keyword3.encode("utf-8"))
 
 URL = 'https://openapi.naver.com/v1/search/shop.json' 
 headers = {
