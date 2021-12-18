@@ -23,9 +23,9 @@ jobs:
       env: 
         X_NAVER_CLIENT_ID: ${{ secrets.X_NAVER_CLIENT_ID }}
         X_NAVER_CLIENT_SECRET: ${{ secrets.X_NAVER_CLIENT_SECRET }}
-        keyword1: 모니터
-        keyword2: 마우스
-        keyword3: 프린터기
+        keyword1: "모니터"
+        keyword2: "마우스"
+        keyword3: "프린터기"
 
 
     - name: Commit files
