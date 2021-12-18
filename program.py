@@ -98,9 +98,9 @@ def getFilteredItemList(itemList):
     
 def saveInExcel(filteredItemList, keyword):
   date = getDate()
-  dir_item = '/output/item/'+keyword
-  dir_date = '/output/date/'+date
-  file_name = '/'+date+'_'+keyword+'.xlsx'
+  dir_item = b'/output/item/'+keyword
+  dir_date = b'/output/date/'+date
+  file_name = b'/'+date+'_'+keyword+'.xlsx'
 
   createFolder(dir_item)
   createFolder(dir_date)
