@@ -3,6 +3,7 @@ import requests
 import json
 import os
 from datetime import datetime
+import re
 
 # EXCEL 저장 정보
 column_name_list = [
@@ -78,6 +79,8 @@ def getFilteredItemList(itemList):
   resItemList = []
   itemLen = len(itemList)
   for idx,item in enumerate(itemList):
+
+    item['title'] = re.sub('(<([^>]+)>)', '', item['title'])
     curFilteredItem = {
     'title' : item['title'],
     'link': item['link'],

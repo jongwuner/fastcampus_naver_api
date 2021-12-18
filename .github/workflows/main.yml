@@ -1,6 +1,10 @@
 name: Update Daily/Item list
 
-on: push
+on:
+  schedule:
+         - cron: "0 0 7 1/1 * ? *"      
+  push:
+    branches: [ main ]
 
 jobs:
   run:
@@ -12,29 +16,16 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: '3.7'
-    - name: Install dependencies & Start Program
+    - name: Install dependencies
       run: |
         dir
-        chcp 65001
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         python program.py
         dir
-      env: 
+      env: # Or as an environment variable
         X_NAVER_CLIENT_ID: ${{ secrets.X_NAVER_CLIENT_ID }}
         X_NAVER_CLIENT_SECRET: ${{ secrets.X_NAVER_CLIENT_SECRET }}
-
-        keyword0: "리모컨"
-        keyword1: "모니터"
-        keyword2: "마우스"
-        keyword3: "프린터기"
-        keyword4: "소파"
-        keyword5: "TV"
-        keyword6: "스피커"
-        keyword7: "스탠드조명"
-        keyword8: "테이블"
-        keyword9: "슬리퍼"
-
 
     - name: Commit files
       id: commit
