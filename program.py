@@ -2,10 +2,7 @@ import pandas
 import requests
 import json
 import os
-
-file_path = './'
-# file_path = './drive/MyDrive/Fastcampus/Marketing/Part3/'
-
+from datetime import datetime
 
 # EXCEL 저장 정보
 column_name_list = [
@@ -25,26 +22,23 @@ column_name_list = [
   ]
 
 
-# NAVER API 고정 정보
-X_NAVER_CLIENT_ID = os.environ.get('X_NAVER_CLIENT_ID')
-X_NAVER_CLIENT_SECRET = os.environ.get('X_NAVER_CLIENT_SECRET')
-keyword1 = os.environ.get('keyword1')
-keyword2 = os.environ.get('keyword2')
-keyword3 = os.environ.get('keyword3')
+# 오늘 날짜 받아오기
+def getDate():
+    now = datetime.now()
+    nowTime = now.strftime('%Y-%m-%d')
+    return nowTime
 
-print(keyword1.encode("utf-8"))
-print(keyword2.encode("utf-8"))
-print(keyword3.encode("utf-8"))
-
-URL = 'https://openapi.naver.com/v1/search/shop.json' 
-headers = {
-  'X-Naver-Client-Id': X_NAVER_CLIENT_ID,
-  'X-Naver-Client-Secret' : X_NAVER_CLIENT_SECRET 
-}
+def createFolder(directory):
+    try:
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+            print("디렉토리가 생성되었습니다. " + directory)
+    except OSError:
+        print ('[에러]: 디렉토리 생성에 에러가 발생했습니다. ' +  directory)
 
 
 # NAVER API 호출 함수
-def getItemListByNaver (query, display='5', sort='sim'):   
+def getItemListByNaver (query, display='100', sort='sim'):   
   params = {'query': query,'display':display,'sort':sort}
   res = requests.get(URL, headers=headers, params=params)
   resData = json.loads(res.text)['items']
@@ -99,16 +93,41 @@ def getFilteredItemList(itemList):
     'category4': item['category4'],
     }
     resItemList.append(curFilteredItem.values())
-    # print(f">>> [{idx}/{itemLen}] 필터링 성공 ")
 
   return resItemList
     
-def saveInExcel(filteredItemList):
+def saveInExcel(filteredItemList, keyword):
+  date = getDate()
+  dir_item = '/output/아이템 별/'+keyword
+  dir_date = '/output/일자 별/'+date
+  file_name = '/'+date+'_'+keyword+'.xlsx'
+
+  createFolder(dir_item)
+  createFolder(dir_date)
+
   df = pandas.DataFrame(filteredItemList, columns=column_name_list)
-  df.to_excel(file_path+'output.xlsx', sheet_name='sample1')
+  df.to_excel(dir_item + file_name, sheet_name='sample1')
+  df.to_excel(dir_date + file_name, sheet_name='sample1')
 
-query = keyword3
-itemList = getItemListByNaver(query)
-filteredItemList = getFilteredItemList(itemList)
 
-saveInExcel(filteredItemList)
+# NAVER API 고정 정보
+X_NAVER_CLIENT_ID = os.environ.get('X_NAVER_CLIENT_ID')
+X_NAVER_CLIENT_SECRET = os.environ.get('X_NAVER_CLIENT_SECRET')
+keyword = []
+
+for i in range(0, 10):
+  tmp_keyword = os.environ.get('keyword'+str(i)).encode("utf-8")
+  keyword.append(tmp_keyword)
+
+URL = 'https://openapi.naver.com/v1/search/shop.json' 
+headers = {
+  'X-Naver-Client-Id': X_NAVER_CLIENT_ID,
+  'X-Naver-Client-Secret' : X_NAVER_CLIENT_SECRET 
+}
+
+
+for i in range(0, 10):
+  query = keyword[i]
+  itemList = getItemListByNaver(query)
+  filteredItemList = getFilteredItemList(itemList)
+  saveInExcel(filteredItemList, query)

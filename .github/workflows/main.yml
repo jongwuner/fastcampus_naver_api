@@ -23,9 +23,17 @@ jobs:
       env: 
         X_NAVER_CLIENT_ID: ${{ secrets.X_NAVER_CLIENT_ID }}
         X_NAVER_CLIENT_SECRET: ${{ secrets.X_NAVER_CLIENT_SECRET }}
+
+        keyword0: "리모컨"
         keyword1: "모니터"
         keyword2: "마우스"
         keyword3: "프린터기"
+        keyword4: "소파"
+        keyword5: "TV"
+        keyword6: "스피커"
+        keyword7: "스탠드조명"
+        keyword8: "테이블"
+        keyword9: "슬리퍼"
 
 
     - name: Commit files
